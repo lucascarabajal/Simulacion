@@ -1,5 +1,5 @@
 
-const domManagement = import('./domManagment.js');
+import { domManagement } from './domManagment.js';
 /*package com.simu;
 
 import java.util.Arrays;
@@ -165,3 +165,8 @@ const main = (function(){
 
     
 })();
+
+const content = document.querySelector('.content');
+const hi = domManagement.domParagraph('hi','hi');
+
+content.appendChild(hi)
