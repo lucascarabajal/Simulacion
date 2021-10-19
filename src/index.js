@@ -80,9 +80,79 @@ public class Main {
 }*/
 
 
-const main = (function(){
+const front = (function(){
+
+    const content = document.querySelector('.content');
+    const divSeleccion = domManagement.domDiv('seleccion');
+    const divPoblacion = domManagement.domDiv('poblacion');
     
+    //functions
+    const mostrarInteracionPoblacion = function(poblacionBack){
+    
+        const poblacionDeIteracion = domManagement.domDiv('poblacionIteracion');
+        //poblacionIteraciones.id = id;
+    
+        for(let i = 0; i < poblacionBack.length; i++){
+            const divIndividuo = domManagement.domDiv(`${i+1}`);
+            const paragraph = domManagement.domParagraph('Habitante',`Habitante: ${i+1}`);
+            divIndividuo.appendChild(paragraph);
+            if(poblacionBack[i] === 'R'){
+                const imgOptionResidente = domManagement.domImage('Residente','https://media.diariouno.com.ar/p/6ca66c388536aad2b26b77c0a7d72ac1/adjuntos/298/imagenes/007/704/0007704925/ricardo-fortjpg.jpg'); 
+                divIndividuo.appendChild(imgOptionResidente);
+            }
+            else{
+                const imgOptionMutante = domManagement.domImage('Mutante', 'http://1.bp.blogspot.com/-HfteZpSnThE/UpNLUWha9WI/AAAAAAAAFA8/kdu_nz7e05I/s1600/ricardo+fort.jpg');
+                divIndividuo.appendChild(imgOptionMutante);
+            }
+            poblacionDeIteracion.appendChild(divIndividuo);
+        }
+        
+        return poblacionDeIteracion;
+    };
+   
+    const interacion = domManagement.domInput('textIteracion', 'number', 'Colocar cantidad de interacciones' );
+    const buttonInteracion = domManagement.domButton('bIteracion', 'buttonClass', 'Generar Iteraciones');
+
+
+    const buttonRecargar = domManagement.domButton('bRecargar', 'buttonClass', 'Reiniciar');
+    
+   
+    
+    buttonInteracion.addEventListener('click', (e)=>{
+        const vIteracion = document.getElementById('textIteracion').value;
+       
+        for(let i = 0; i < vIteracion; i++){
+            back.generarIteracion();
+            const iteracionDiv = domManagement.domDiv('Iteracion');
+            const paragraph = domManagement.domParagraph('iteracion',`Iteracion: ${i+1}`);
+            iteracionDiv.appendChild(paragraph);
+            iteracionDiv.appendChild(mostrarInteracionPoblacion(back.poblacion));
+            divPoblacion.appendChild(iteracionDiv);
+        }
+    });
+
+    buttonRecargar.addEventListener('click', ()=> window.location.reload());
+
+
+    divSeleccion.appendChild(interacion);
+    divSeleccion.appendChild(buttonInteracion);
+    divSeleccion.appendChild(buttonRecargar);
+
+    content.appendChild(divSeleccion);
+    content.appendChild(divPoblacion);
+
+
+    
+    
+})();
+
+
+
+const back = (function(){
     let poblacion = ['R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R'];
+    let iteraccion = 0;
+
+    
 
     const probabilidad = [
         [0.00, 0.14, 0.05, 0.20, 0.02, 0.11, 0.01, 0.15, 0.02, 0.30] //0
@@ -98,12 +168,12 @@ const main = (function(){
     ]
 
     const procesoMoran = function(fila, prob, probabilidadArray){
-        const probabilidadCercana = 0.99;
+        let probabilidadCercana = 0.99;
         let column = 0;
         for(let i = 0; i < 10; i++){
-            let probAbs = Math.abs(prob - probabilidad[fila][i]);
+            let probAbs = Math.abs(prob - probabilidadArray[fila][i]);
             if(probAbs < probabilidadCercana){
-                probabilidaCercana = probAbs;
+                probabilidadCercana = probAbs;
                 column = i;
             }
         }
@@ -117,56 +187,29 @@ const main = (function(){
     
    
 
-    const mostrarPoblacion = function(poblacion){
+    const generarIteracion = function(){
+        const seleccionReproductor = Math.round((Math.random()*range) + min);
+        const reMinimo=0.01;
+        const reMaximo=0.99;
+        const reRange = reMaximo - reMinimo;
+        const probMuerto = (Math.random()*reRange) + reMinimo;
 
-    }
-
-
-    /*
-    public static void main(String[] args) {
-
-        EPoblacion[] poblacion = new EPoblacion[10];
-        Arrays.fill(poblacion, RESIDENTE);
-
-        //Elegimos la t cantidad pasos de tiempo
-        System.out.print("\nIngrese la cantidad de iteraciones que quiere realizar: ");
-        Scanner scan = new Scanner(System.in);
-        int iteracion = scan.nextInt();
-
-        int minimo = 0;
-        int maximo = 9;
-        int range = maximo - minimo +1;
-
-        int seleccionMutante = (int) (Math.random() * range) + minimo;
-        poblacion[seleccionMutante]= MUTANTE;
-
-        //Iteraciones del proceso de moran
-        double reMinimo=0.01;
-        double reMaximo=0.99;
-        double reRange = reMaximo - reMinimo;
-
-        for(int i = 0; i < iteracion; i++){
-            int seleccionReproductor = (int) (Math.random() * range) + minimo;
-            double probMuerto = (Math.random()*reRange) + reMinimo;
-
-            int reemplazoProb = procesoMoran(seleccionReproductor, probMuerto, probabilidad);
-            actualizarPoblacion(poblacion, reemplazoProb, seleccionReproductor);
-            mostrarPoblacion(poblacion);
-        }
+        let reemplazoProb = procesoMoran(seleccionReproductor, probMuerto, probabilidad);
+        actualizarPoblacion(poblacion, reemplazoProb, seleccionReproductor);
         
     }
-    */
 
-    
+
    
-    
- 
-
 
     
+    const min = 0;
+    const max = 9;
+    const range = max - min + 1;
+    let seleccionMutante = Math.round((Math.random()*range) + min);
+    poblacion[seleccionMutante] = 'M';
+
+    return {generarIteracion,poblacion}
 })();
 
-const content = document.querySelector('.content');
-const hi = domManagement.domParagraph('hi','hi');
 
-content.appendChild(hi)
