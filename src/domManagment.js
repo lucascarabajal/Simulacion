@@ -86,6 +86,13 @@ const domManagement = (function(){
         return select;
     }
 
+    const domDiv = function(classNameDiv){
+        const div = document.createElement('div');
+        div.className = classNameDiv;
+
+        return div;
+    }
+
     return{
         domButton,
         domImage,
@@ -96,7 +103,8 @@ const domManagement = (function(){
         domAnchor,
         domInput,
         domSelect,
-        domInput
+        domInput,
+        domDiv
     }
 })();
 
