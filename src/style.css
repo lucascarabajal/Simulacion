@@ -154,6 +154,12 @@ button:hover{
 
 
 @media all and (max-width: 1366px) {
+    .header{
+        height: 100px;
+    }
+    .seleccion{
+        height: 175px;
+    }
     img{
         max-width: 135px;
         max-height: 135px;
@@ -182,7 +188,7 @@ button:hover{
         font-size: 15px;
     }
     .divIteracionSalvada{  
-        height: 90px;
+        height: 80px;
     }
     #textIteracion{
         height: 40px;
