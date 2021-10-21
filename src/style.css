@@ -1,0 +1,137 @@
+:root{
+    --color1:#fff0ff;
+    --color2:#1a1833;
+    --color3:#77767c;
+    --color4:#e2e2e2;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    height: 150px;
+    background-color: var(--color2);
+    color: var(--color1);
+}
+
+body{
+    background-color: var(--color1);
+    font-family: 'Roboto Slab', serif;
+}
+
+
+.titPagina{
+    font-size: 40px;
+}
+
+.poblacionIteracion{
+    display: flex;
+    max-height: 500px;
+}
+
+img{
+    max-width: 275px;
+    max-height: 275px;
+}
+
+p{
+    color:var(--color2)
+}
+
+
+
+.seleccion{
+    display: grid;
+    grid-template-columns: 40% 10% 10% 40%;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    ". textBox textBox ."
+    ". buttonIteracion buttonReiniciar ."  
+    ". . . ."
+    ". . . .";
+    height: 200px;
+    background-color: rgba(26, 24, 51, 0.9);
+    justify-items: center;
+}
+
+.divIteracionSalvada{
+    display: flex;
+    background-color: rgba(26, 24, 51, 0.8);
+    height: 100px;
+    align-items: center;
+}
+
+
+#pSalvada{
+    color: var(--color1);
+    margin-left: 20px;  
+    font-size: 25px; 
+}
+
+#pLatente{
+    color: var(--color1);
+    margin-left: 20px;  
+    font-size: 25px; 
+}
+
+
+#textIteracion{
+    height: 40px;
+    width: 320px;
+    font-size: 20px;
+    background-color: var(--color1);
+    grid-area: textBox;
+    margin:40px 10px 10px 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.Iteracion{
+    margin: 20px 20px 20px 20px;
+    border-bottom: solid 1px var(--color2);
+}
+
+#pIteracion{
+    font-size: 40px;
+}
+
+#bIteracion{
+    grid-area: buttonIteracion;
+    margin:10px;
+    width: 250px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+
+#bReiniciar{
+    grid-area: buttonReiniciar;
+    margin:10px;
+    width: 250px;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+
+button{
+  background-color: var(--color1); 
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-family: 'Roboto Slab', serif;
+}
+
+button:hover{
+    background-color: var(--color2);
+    color:var(--color1);
+}
+
+.titPagina{
+    margin-left: 20px;
+}
+
+
+
