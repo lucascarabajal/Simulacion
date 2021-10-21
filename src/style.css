@@ -14,8 +14,6 @@
 }
 
 
-
-
 body{
     margin: 0px;
     padding: 0px;
@@ -161,6 +159,41 @@ button:hover{
         max-height: 135px;
     }
     #Mutante{
-        max-height: 110px;
+        max-height: 115px;
+        max-width: 135px;
+    }
+    .titPagina{
+        font-size: 25px;
+    }
+    
+    button{
+        font-size: 10px;
+    }
+    #bIteracion{
+        width: 210px;
+        height: 50px;
+        font-size: 15px;
+        border-radius: 5px;
+    }
+    #bReiniciar{ 
+        width: 210px;
+        height: 50px;
+        border-radius: 5px;
+        font-size: 15px;
+    }
+    .divIteracionSalvada{  
+        height: 90px;
+    }
+    #textIteracion{
+        height: 40px;
+        width: 240px;
+        font-size: 15px;
+    }
+    #pSalvada{
+        font-size: 20px; 
+    }
+    
+    #pLatente{  
+        font-size: 20px; 
     }
   }
