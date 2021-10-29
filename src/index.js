@@ -107,10 +107,6 @@ const front = (function(){
     content.appendChild(divSeleccion);
     content.appendChild(divIteracionSalvada);
     content.appendChild(divPoblacion);
-
-
-    
-    
 })();
 
 
@@ -134,17 +130,16 @@ const back = (function(){
         ,[0.15, 0.07, 0.02, 0.09, 0.20, 0.05, 0.20, 0.12, 0.10, 0.00] //9
     ]
 
-    const procesoMoran = function(fila, prob, probabilidadArray){
-        let probabilidadCercana = 0.99;
+    const procesoMoran = function(fila, prob){
         let column = 0;
-        for(let i = 0; i < 10; i++){
-            let probAbs = Math.abs(prob - probabilidadArray[fila][i]);
-            if(probAbs < probabilidadCercana){
-                probabilidadCercana = probAbs;
-                column = i;
-            }
+        let acumulado =0;
+        let j=-1;
+        
+        while(acumulado<prob){
+            j++;
+            acumulado+=probabilidad[fila][j]
+            
         }
-        return column;
     }
     
     const actualizarPoblacion = function(poblacion, col, seleccionReproductor){
@@ -189,3 +184,10 @@ const back = (function(){
 
 
 
+// for(let i = 0; i < 10; i++){
+        //     let probAbs = Math.abs(prob - probabilidadArray[fila][i]);
+        //     if(probAbs < probabilidadCercana){
+        //         probabilidadCercana = probAbs;
+        //         column = i;
+        //     }
+        // }
